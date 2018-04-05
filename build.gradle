@@ -1,0 +1,42 @@
+buildscript {
+	// Apontamento de repositorio para Maven Central
+    repositories {
+        mavenCentral()
+    }
+    // Dependencias do Springboot básica
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'gs-accessing-data-mysql'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	// Dependencias do Springboot http
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    // JPA Data (Agora podemos usar os Repositories, Entities, Hibernate, etc...)
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
+    
+	// Dependencias do Springboot teste
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
